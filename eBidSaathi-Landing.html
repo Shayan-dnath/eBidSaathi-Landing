@@ -688,6 +688,60 @@
       margin-top: 1px;
     }
 
+    /* ─── PRICING FLOW ─── */
+    .pricing-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 40px;
+      padding: 24px 32px;
+      background: var(--off-white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .pricing-flow-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .flow-text {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      max-width: 220px;
+      line-height: 1.45;
+    }
+
+    .flow-arrow {
+      font-size: 1.2rem;
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-flow { flex-direction: column; gap: 12px; }
+      .flow-arrow { transform: rotate(90deg); }
+      .flow-text { max-width: 100%; }
+    }
+
     /* ─── EARLY ACCESS FORM ─── */
     .early-access {
       background: var(--navy);
@@ -1232,7 +1286,7 @@
   <div class="section-inner">
     <div class="section-tag">Pricing</div>
     <h2 class="section-heading">Transparent pricing. No hidden fees. No surprises.</h2>
-    <p class="section-sub">Start with alerts and upgrade to expert support when you're ready to bid.</p>
+    <p class="section-sub">Start with automated alerts. When a tender worth pursuing lands in your WhatsApp, our team steps in — no chasing required.</p>
 
     <div class="pricing-grid">
       <div class="price-card">
@@ -1253,35 +1307,53 @@
 
       <div class="price-card featured">
         <div class="price-badge">Most Popular</div>
-        <div class="price-tier">Tender Consultation</div>
+        <div class="price-tier">Expert Consultation</div>
         <div class="price-amount"><span class="currency">₹</span>1,499</div>
         <div class="price-period">per tender</div>
-        <p class="price-desc">Expert consultation on a specific tender you want to bid on. Know exactly what's needed before you spend a single hour preparing.</p>
+        <p class="price-desc">When a tender lands in your WhatsApp alerts and you want to pursue it — tap the link. Our Sales team reaches you within 24 hours, confirms your eligibility, and assigns a dedicated Account Manager to carry it through.</p>
         <ul class="price-features">
-          <li>One-on-one expert call</li>
-          <li>Eligibility assessment</li>
-          <li>Complete document checklist</li>
+          <li>Triggered directly from your WhatsApp alert</li>
+          <li>Sales team contacts you within 24 hrs</li>
+          <li>Eligibility & document checklist</li>
           <li>Risk & deadline walkthrough</li>
-          <li>Next-step action plan</li>
+          <li>Account Manager assigned for the bid</li>
         </ul>
-        <a href="#early-access" class="btn btn-primary btn-large" style="width:100%; justify-content:center;">Book a Consultation</a>
+        <a href="#early-access" class="btn btn-primary btn-large" style="width:100%; justify-content:center;">Start with ₹499 to Unlock →</a>
       </div>
 
       <div class="price-card">
-        <div class="price-tier">End-to-End Bid Support</div>
+        <div class="price-tier">Full Bid Management</div>
         <div class="price-amount" style="font-size:1.6rem; padding-top:4px;">Custom Quote</div>
         <div class="price-period">based on tender complexity</div>
-        <p class="price-desc">We handle everything — document organisation, form preparation, and guided submission — so you can focus on fulfilling the contract.</p>
+        <p class="price-desc">For high-value or complex bids, your dedicated Account Manager takes full ownership — documents, forms, portal submission — and keeps you informed at every step until the bid is submitted.</p>
         <ul class="price-features">
-          <li>Document collation & organisation</li>
-          <li>Administrative form support</li>
+          <li>Dedicated Account Manager assigned</li>
+          <li>Full document collation & organisation</li>
+          <li>Administrative form preparation</li>
           <li>Portal submission assistance</li>
-          <li>Deadline tracking & reminders</li>
-          <li>Dedicated Account Manager</li>
+          <li>Deadline tracking until bid submitted</li>
         </ul>
         <a href="tel:9366218754" class="btn btn-outline" style="width:100%; justify-content:center;">Call Us to Discuss</a>
       </div>
     </div>
+
+    <div class="pricing-flow">
+      <div class="pricing-flow-step">
+        <span class="flow-num">1</span>
+        <span class="flow-text"><strong>₹499 alerts</strong> identify the opportunity — automatically</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="pricing-flow-step">
+        <span class="flow-num">2</span>
+        <span class="flow-text"><strong>Tap the link in your alert</strong> — our team calls you &amp; confirms eligibility</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="pricing-flow-step">
+        <span class="flow-num">3</span>
+        <span class="flow-text"><strong>Account Manager</strong> handles the full bid until submission</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
