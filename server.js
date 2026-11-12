@@ -4,7 +4,10 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const DATA_DIR = path.join(__dirname, 'data');
+
+// On Vercel the filesystem is read-only; /tmp is the only writable dir
+const IS_VERCEL = !!process.env.VERCEL;
+const DATA_DIR  = IS_VERCEL ? '/tmp' : path.join(__dirname, 'data');
 const DATA_FILE = path.join(DATA_DIR, 'submissions.json');
 
 app.use(express.json());
@@ -34,25 +37,26 @@ app.post('/api/early-access', (req, res) => {
     category: category || ''
   };
 
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR);
-
-  let submissions = [];
-  if (fs.existsSync(DATA_FILE)) {
-    try { submissions = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')); } catch {}
+  // Persist locally (on Vercel this uses /tmp — survives the request but not cold starts)
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    let submissions = [];
+    if (fs.existsSync(DATA_FILE)) {
+      try { submissions = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')); } catch {}
+    }
+    submissions.push(submission);
+    fs.writeFileSync(DATA_FILE, JSON.stringify(submissions, null, 2));
+  } catch (err) {
+    console.error('File write error (non-fatal):', err.message);
   }
-
-  submissions.push(submission);
-  fs.writeFileSync(DATA_FILE, JSON.stringify(submissions, null, 2));
 
   console.log(`[${submission.timestamp}] New signup: ${name} (${phone}) — ${business} [${type}, ${state}]`);
   res.json({ success: true });
 });
 
-// View all submissions at /admin/submissions
+// View submissions (local dev only)
 app.get('/admin/submissions', (req, res) => {
-  if (!fs.existsSync(DATA_FILE)) {
-    return res.json({ total: 0, submissions: [] });
-  }
+  if (!fs.existsSync(DATA_FILE)) return res.json({ total: 0, submissions: [] });
   try {
     const submissions = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
     res.json({ total: submissions.length, submissions });
@@ -61,7 +65,13 @@ app.get('/admin/submissions', (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`\n  eBidSaathi running at http://localhost:${PORT}`);
-  console.log(`  Submissions at   http://localhost:${PORT}/admin/submissions\n`);
-});
+// Start server only when run directly (not imported by Vercel)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`\n  eBidSaathi running at http://localhost:${PORT}`);
+    console.log(`  Submissions at   http://localhost:${PORT}/admin/submissions\n`);
+  });
+}
+
+// Export for Vercel serverless
+module.exports = app;
