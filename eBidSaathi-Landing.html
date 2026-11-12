@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>eBidSaathi — Find Opportunities. Bid with Confidence.</title>
+  <meta name="description" content="eBidSaathi helps Indian MSMEs discover government procurement tenders and bid with expert support. Tender alerts from ₹499/month." />
+  <meta property="og:title" content="eBidSaathi — Find Opportunities. Bid with Confidence." />
+  <meta property="og:description" content="Smart tender alerts + expert bid support for Indian MSMEs." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1B2D5B;
+      --navy-deep: #111E3E;
+      --navy-mid: #243870;
+      --gold: #C49A1A;
+      --gold-light: #E8B820;
+      --gold-pale: #FBF4DC;
+      --white: #FFFFFF;
+      --off-white: #F8F9FB;
+      --text-primary: #0F1A33;
+      --text-secondary: #4A5568;
+      --text-muted: #718096;
+      --border: #E2E8F0;
+      --border-strong: #CBD5E0;
+      --success: #276749;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text-primary);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      height: 48px;
+      width: auto;
+    }
+
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+    }
+
+    .logo-text span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--navy); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy-deep);
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-large {
+      padding: 15px 32px;
+      font-size: 1rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border: 1.5px solid var(--navy);
+      padding: 13px 30px;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+    }
+
+    .btn-outline:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--navy-deep);
+      padding: 14px 30px;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+    }
+
+    .btn-white:hover {
+      background: var(--gold-pale);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 88px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(196,154,26,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(27,45,91,0.8) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(196,154,26,0.15);
+      border: 1px solid rgba(196,154,26,0.3);
+      color: var(--gold-light);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 28px;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold-light);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      max-width: 740px;
+      margin-bottom: 24px;
+      color: var(--white);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.72);
+      max-width: 540px;
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 64px;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 10px;
+    }
+
+    /* Stats strip */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.1);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      max-width: 680px;
+    }
+
+    .stat-box {
+      background: rgba(255,255,255,0.05);
+      padding: 24px 28px;
+    }
+
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.4;
+    }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--off-white);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+    }
+
+    .trust-bar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .trust-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .trust-items {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .trust-item svg {
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 88px 24px; }
+
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .section-heading {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.18;
+      color: var(--text-primary);
+      max-width: 600px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 520px;
+      line-height: 1.65;
+      margin-top: 14px;
+    }
+
+    /* ─── PROBLEM ─── */
+    .problem {
+      background: var(--white);
+    }
+
+    .problem-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+      margin-top: 56px;
+    }
+
+    .pain-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .pain-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .pain-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: #FEF2F2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .pain-text h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .pain-text p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .reality-box {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      color: var(--white);
+    }
+
+    .reality-box h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+    }
+
+    .reality-stat {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .reality-stat:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .reality-stat .big {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .reality-stat .caption {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how {
+      background: var(--off-white);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 56px;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: calc(16.666% + 24px);
+      right: calc(16.666% + 24px);
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.3;
+    }
+
+    .step {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .step p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .step-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--gold-pale);
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── WHO IT'S FOR ─── */
+    .segments {
+      background: var(--white);
+    }
+
+    .segment-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .segment-card {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: border-color 0.2s;
+    }
+
+    .segment-card:hover {
+      border-color: var(--gold);
+    }
+
+    .segment-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .segment-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .segment-card p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .segment-examples {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill {
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--off-white);
+      color: var(--text-secondary);
+      font-weight: 500;
+      border: 1px solid var(--border);
+    }
+
+    /* ─── PRICING ─── */
+    .pricing {
+      background: var(--off-white);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+      align-items: start;
+    }
+
+    .price-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      padding: 36px 32px;
+      position: relative;
+    }
+
+    .price-card.featured {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 1px var(--navy);
+    }
+
+    .price-badge {
+      position: absolute;
+      top: -13px;
+      left: 32px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+    }
+
+    .price-tier {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .price-amount {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .price-amount .currency {
+      font-size: 1.1rem;
+      vertical-align: super;
+      font-weight: 700;
+    }
+
+    .price-period {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      margin-bottom: 20px;
+    }
+
+    .price-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .price-features li::before {
+      content: '✓';
+      color: var(--success);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ─── EARLY ACCESS FORM ─── */
+    .early-access {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .early-access-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .early-left h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .early-left h2 em {
+      font-style: normal;
+      color: var(--gold-light);
+    }
+
+    .early-left p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+      max-width: 420px;
+    }
+
+    .early-perks {
+      list-style: none;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .early-perks li {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .early-perks li::before {
+      content: '→';
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .form-box {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+
+    .form-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: var(--text-primary);
+      background: var(--white);
+      transition: border-color 0.15s;
+      outline: none;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--navy);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 8px;
+      transition: all 0.15s;
+    }
+
+    .form-submit:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy-deep);
+      color: rgba(255,255,255,0.5);
+      padding: 48px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 32px;
+    }
+
+    .footer-brand .logo-text {
+      color: var(--white);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .footer-brand p {
+      font-size: 0.82rem;
+      line-height: 1.65;
+      max-width: 280px;
+    }
+
+    .footer-contact {
+      margin-top: 16px;
+      font-size: 0.82rem;
+    }
+
+    .footer-contact a {
+      color: var(--gold-light);
+      text-decoration: none;
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+      transition: color 0.15s;
+    }
+
+    .footer-col ul a:hover { color: var(--white); }
+
+    .footer-bottom {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p { font-size: 0.8rem; }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+
+    .footer-bottom a:hover { color: var(--white); }
+
+    /* ─── SUCCESS STATE ─── */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .form-success .check {
+      width: 56px;
+      height: 56px;
+      background: #DCFCE7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 1.5rem;
+    }
+
+    .form-success h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .form-success p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    /* ─── MOBILE ─── */
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .mobile-menu-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-btn { display: flex; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0; right: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 20px 24px;
+        gap: 20px;
+        z-index: 99;
+      }
+
+      section { padding: 64px 20px; }
+
+      .hero { padding: 64px 20px 56px; }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+
+      .problem-layout,
+      .steps,
+      .segment-grid,
+      .pricing-grid,
+      .early-access-inner,
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .steps::before { display: none; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .hero-cta { flex-direction: column; align-items: flex-start; }
+
+      .btn-large, .btn-outline { width: 100%; text-align: center; }
+
+      .footer-inner { gap: 32px; }
+
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo" aria-label="eBidSaathi home">
+      <img src="/eBidSaathi-Logo.png" alt="eBidSaathi" class="logo-mark" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#for-who">Who it's for</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#early-access" class="btn btn-primary">Get Early Access</a></li>
+    </ul>
+    <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Now in Early Access — Limited Spots Available
+    </div>
+    <h1>India's Government Tenders,<br><em>Matched to Your Business.</em></h1>
+    <p class="hero-sub">
+      eBidSaathi monitors 54+ procurement portals, filters out the noise, and alerts you the moment a relevant tender is published — then walks you through winning it.
+    </p>
+    <div class="hero-cta">
+      <a href="#early-access" class="btn btn-primary btn-large">Get Early Access — Free</a>
+      <a href="#how-it-works" class="btn btn-outline">See how it works</a>
+    </div>
+    <p class="hero-note">No credit card required &nbsp;·&nbsp; Cancel anytime &nbsp;·&nbsp; Starts at ₹499/month</p>
+
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-num">54+</div>
+        <div class="stat-label">Procurement portals monitored daily</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">₹20L Cr</div>
+        <div class="stat-label">Annual govt. procurement market size</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">25%</div>
+        <div class="stat-label">Mandated MSME procurement share</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <span class="trust-label">Covers</span>
+    <div class="trust-items">
+      <div class="trust-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="7" cy="7" r="7"/></svg>
+        GeM (bidplus.gem.gov.in)
+      </div>
+      <div class="trust-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="7" cy="7" r="7"/></svg>
+        CPPP (eprocure.gov.in)
+      </div>
+      <div class="trust-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="7" cy="7" r="7"/></svg>
+        All State e-Procurement Portals
+      </div>
+      <div class="trust-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="7" cy="7" r="7"/></svg>
+        PSU & Defence Portals
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="section-inner">
+    <div class="section-tag">The Problem</div>
+    <h2 class="section-heading">MSMEs are losing contracts they never even knew existed</h2>
+    <p class="section-sub">India's procurement system is fragmented across dozens of portals. By the time most businesses find a relevant tender, the deadline has passed.</p>
+
+    <div class="problem-layout">
+      <ul class="pain-list">
+        <li class="pain-item">
+          <div class="pain-icon">🔍</div>
+          <div class="pain-text">
+            <h4>Tenders are scattered across 54+ portals</h4>
+            <p>Central, state, PSU and defence portals all publish independently. No MSME has the bandwidth to monitor all of them daily.</p>
+          </div>
+        </li>
+        <li class="pain-item">
+          <div class="pain-icon">📄</div>
+          <div class="pain-text">
+            <h4>Tender documents are complex and time-consuming</h4>
+            <p>Eligibility criteria, EMD requirements, and document checklists take hours to decode — and one missing paper means instant disqualification.</p>
+          </div>
+        </li>
+        <li class="pain-item">
+          <div class="pain-icon">⏰</div>
+          <div class="pain-text">
+            <h4>Deadlines move fast — corrigenda move faster</h4>
+            <p>Tender conditions change after publication. Businesses that miss the amendment bid on wrong terms, wasting effort and sometimes money.</p>
+          </div>
+        </li>
+        <li class="pain-item">
+          <div class="pain-icon">🧑‍💼</div>
+          <div class="pain-text">
+            <h4>No dedicated tender team</h4>
+            <p>Hiring a full-time tender executive costs ₹25,000–₹50,000/month. Most MSMEs can't justify it — even when contracts are worth crores.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="reality-box">
+        <h3>The reality for Indian MSMEs</h3>
+        <div class="reality-stat">
+          <div class="big">63M+</div>
+          <div class="caption">MSMEs in India eligible for government procurement, yet most never bid once</div>
+        </div>
+        <div class="reality-stat">
+          <div class="big">25%</div>
+          <div class="caption">Government procurement mandated for MSMEs — billions of rupees going unclaimed</div>
+        </div>
+        <div class="reality-stat">
+          <div class="big">#1</div>
+          <div class="caption">Government of India is the single largest buyer of goods and services in the country</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how-it-works">
+  <div class="section-inner">
+    <div class="section-tag">How it works</div>
+    <h2 class="section-heading">From tender published to bid submitted — we're with you at every step</h2>
+    <p class="section-sub">Build a profile once. We do the monitoring. You focus on your business.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Build your business profile</h3>
+        <p>Tell us what you supply, where you operate, and your preferred tender size. We map your profile to 400+ procurement categories across all portals.</p>
+        <span class="step-tag">One-time setup</span>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Get matched alerts instantly</h3>
+        <p>The moment a relevant tender is published, you receive a WhatsApp alert with the title, deadline, estimated value, and the official source link.</p>
+        <span class="step-tag">₹499 / month</span>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Win with expert support</h3>
+        <p>Interested in a tender? Our consultants review eligibility, build your document checklist, and guide your submission from start to finish.</p>
+        <span class="step-tag">₹1,499 per tender</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="segments" id="for-who">
+  <div class="section-inner">
+    <div class="section-tag">Who it's for</div>
+    <h2 class="section-heading">Built for businesses that supply to India's public sector</h2>
+    <p class="section-sub">If you manufacture, trade, distribute, or provide services — there are government contracts waiting for you.</p>
+
+    <div class="segment-grid">
+      <div class="segment-card">
+        <div class="segment-icon">🏭</div>
+        <h3>Manufacturers</h3>
+        <p>Find procurement opportunities tied to your products, your certifications, and your production capacity — across central and state buyers.</p>
+        <div class="segment-examples">
+          <span class="pill">Textiles</span>
+          <span class="pill">Medical Devices</span>
+          <span class="pill">Electrical Equipment</span>
+          <span class="pill">Industrial Components</span>
+          <span class="pill">Food Products</span>
+        </div>
+      </div>
+      <div class="segment-card">
+        <div class="segment-icon">📦</div>
+        <h3>Traders & Distributors</h3>
+        <p>Discover supply contracts that match your brands, your territory, and your stock availability — without monitoring portals yourself.</p>
+        <div class="segment-examples">
+          <span class="pill">IT Hardware</span>
+          <span class="pill">Medical Supplies</span>
+          <span class="pill">Stationery</span>
+          <span class="pill">Automobile Spares</span>
+          <span class="pill">Furniture</span>
+        </div>
+      </div>
+      <div class="segment-card">
+        <div class="segment-icon">🛠️</div>
+        <h3>Service Providers</h3>
+        <p>Get alerted to service contracts in your domain and geography, matched to your team size and existing credentials.</p>
+        <div class="segment-examples">
+          <span class="pill">IT Services</span>
+          <span class="pill">Facility Management</span>
+          <span class="pill">Security</span>
+          <span class="pill">Logistics</span>
+          <span class="pill">Manpower</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-inner">
+    <div class="section-tag">Pricing</div>
+    <h2 class="section-heading">Transparent pricing. No hidden fees. No surprises.</h2>
+    <p class="section-sub">Start with alerts and upgrade to expert support when you're ready to bid.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">Tender Alerts</div>
+        <div class="price-amount"><span class="currency">₹</span>499</div>
+        <div class="price-period">per month</div>
+        <p class="price-desc">Daily curated alerts matched to your business profile. Know about every relevant tender before your competitors do.</p>
+        <ul class="price-features">
+          <li>Filtered alerts across 54+ portals</li>
+          <li>WhatsApp + push notifications</li>
+          <li>Deadline, value & EMD details</li>
+          <li>Official source links</li>
+          <li>Business profile setup</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a href="#early-access" class="btn btn-outline" style="width:100%; justify-content:center;">Start for ₹499</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-tier">Tender Consultation</div>
+        <div class="price-amount"><span class="currency">₹</span>1,499</div>
+        <div class="price-period">per tender</div>
+        <p class="price-desc">Expert consultation on a specific tender you want to bid on. Know exactly what's needed before you spend a single hour preparing.</p>
+        <ul class="price-features">
+          <li>One-on-one expert call</li>
+          <li>Eligibility assessment</li>
+          <li>Complete document checklist</li>
+          <li>Risk & deadline walkthrough</li>
+          <li>Next-step action plan</li>
+        </ul>
+        <a href="#early-access" class="btn btn-primary btn-large" style="width:100%; justify-content:center;">Book a Consultation</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tier">End-to-End Bid Support</div>
+        <div class="price-amount" style="font-size:1.6rem; padding-top:4px;">Custom Quote</div>
+        <div class="price-period">based on tender complexity</div>
+        <p class="price-desc">We handle everything — document organisation, form preparation, and guided submission — so you can focus on fulfilling the contract.</p>
+        <ul class="price-features">
+          <li>Document collation & organisation</li>
+          <li>Administrative form support</li>
+          <li>Portal submission assistance</li>
+          <li>Deadline tracking & reminders</li>
+          <li>Dedicated Account Manager</li>
+        </ul>
+        <a href="tel:9366218754" class="btn btn-outline" style="width:100%; justify-content:center;">Call Us to Discuss</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EARLY ACCESS FORM -->
+<section class="early-access" id="early-access">
+  <div class="early-access-inner">
+    <div class="early-left">
+      <h2>Be the first to know when<br><em>a contract is yours to win.</em></h2>
+      <p>Join our early access list. We'll set up your profile, test the matching for your categories, and give you priority onboarding when we go live.</p>
+      <ul class="early-perks">
+        <li>Priority access before public launch</li>
+        <li>Free profile setup and category mapping</li>
+        <li>First month at no charge for early members</li>
+        <li>Direct line to our founding team</li>
+      </ul>
+    </div>
+
+    <div class="form-box">
+      <h3>Register your interest</h3>
+      <div id="formContent">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="Rajesh Kumar" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">WhatsApp Number</label>
+            <input type="tel" id="phone" placeholder="98765 43210" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="business">Business Name</label>
+          <input type="text" id="business" placeholder="Sharma Trading Co." required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="type">Business Type</label>
+            <select id="type" required>
+              <option value="" disabled selected>Select type</option>
+              <option>Manufacturer</option>
+              <option>Trader / Distributor</option>
+              <option>Service Provider</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="state">Operating State</label>
+            <select id="state" required>
+              <option value="" disabled selected>Select state</option>
+              <option>Maharashtra</option>
+              <option>Gujarat</option>
+              <option>Tamil Nadu</option>
+              <option>Karnataka</option>
+              <option>Uttar Pradesh</option>
+              <option>Rajasthan</option>
+              <option>West Bengal</option>
+              <option>Delhi NCR</option>
+              <option>Telangana</option>
+              <option>Andhra Pradesh</option>
+              <option>Madhya Pradesh</option>
+              <option>Punjab</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="category">What do you supply?</label>
+          <input type="text" id="category" placeholder="e.g. IT hardware, security services, steel furniture" />
+        </div>
+        <button class="form-submit" onclick="handleSubmit()">Register for Early Access →</button>
+        <p class="form-note">We'll reach out on WhatsApp within 24 hours. No spam, ever.</p>
+      </div>
+
+      <div class="form-success" id="formSuccess">
+        <div class="check">✓</div>
+        <h4>You're on the list!</h4>
+        <p>We'll WhatsApp you within 24 hours to set up your profile and get you ready for early access.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="/eBidSaathi-Logo.png" alt="eBidSaathi" style="height:36px; display:block; margin-bottom:10px;" />
+      <p>Helping Indian MSMEs find and win government contracts through smart tender intelligence and expert bid support.</p>
+      <div class="footer-contact">
+        <p>📞 <a href="tel:9366218754">93662 18754</a></p>
+        <p style="margin-top:4px">🌐 <a href="https://ebidsaathi.in">ebidsaathi.in</a></p>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#for-who">Who it's for</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#early-access">Early Access</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="/terms.html">Terms of Service</a></li>
+        <li><a href="/refund-policy.html">Refund Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Shayan Debnath. All rights reserved. eBidSaathi.</p>
+    <div style="display:flex; gap:20px;">
+      <a href="https://ebidsaathi.com">ebidsaathi.com</a>
+      <a href="https://ebidsaathi.in">ebidsaathi.in</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const links = document.getElementById('navLinks');
+    links.classList.toggle('open');
+  }
+
+  async function handleSubmit() {
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const business = document.getElementById('business').value.trim();
+    const type = document.getElementById('type').value;
+    const state = document.getElementById('state').value;
+    const category = document.getElementById('category').value.trim();
+
+    if (!name || !phone || !business || !type || !state) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    const btn = document.querySelector('.form-submit');
+    btn.disabled = true;
+    btn.textContent = 'Registering…';
+
+    try {
+      const res = await fetch('/api/early-access', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, business, type, state, category })
+      });
+
+      if (!res.ok) throw new Error('Server error');
+
+      document.getElementById('formContent').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Register for Early Access →';
+      alert('Something went wrong. Please try again or call us directly.');
+    }
+  }
+
+  // Smooth scroll offset for sticky nav
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 72;
+        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
